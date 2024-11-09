@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Embed the Roboto font */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            background: url('https://ik.imagekit.io/4z8covdo9/Full%20stack/todolistbg.png?updatedAt=1700761069523') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            color: #ffcc00;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #000;
+        }
+        button {
+            background-color: #ff6600;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #e55b00;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .delete {
+            color: #ff0000;
+            cursor: pointer;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cosmic To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Add your cosmic task here...">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById('taskInput');
+            var taskText = taskInput.value.trim();
+
+            if (taskText === '') {
+                alert('Please enter a task!');
+                return;
+            }
+
+            var li = document.createElement('li');
+            li.textContent = taskText;
+
+            var deleteBtn = document.createElement('span');
+            deleteBtn.textContent = '❌';
+            deleteBtn.className = 'delete';
+            deleteBtn.onclick = function() {
+                this.parentElement.remove();
+            };
+
+            li.appendChild(deleteBtn);
+            document.getElementById('taskList').appendChild(li);
+            taskInput.value = '';
+        }
+    </script>
+</body>
+</html>
